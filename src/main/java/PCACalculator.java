@@ -1,6 +1,7 @@
 import org.apache.commons.math3.linear.EigenDecomposition;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.stat.correlation.Covariance;
 
 import java.util.Arrays;
@@ -39,5 +40,19 @@ public class PCACalculator {
 
         RealMatrix matrixW = MatrixUtils.createRealMatrix(matrixWdata).transpose();
         System.out.println("Macierz W: "+ matrixW);
+
+        //not sure about that, multiplying 
+        double[] vectorResult0 = matrixW.preMultiply(pointsArray[0]);
+        System.out.println("Wektor x[0]' "+ Arrays.toString(vectorResult0));
+        double[] vectorResult1 = matrixW.preMultiply(pointsArray[1]);
+        System.out.println("Wektor x[1]' "+ Arrays.toString(vectorResult1));
+        double[] vectorResult2 = matrixW.preMultiply(pointsArray[2]);
+        System.out.println("Wektor x[2]' "+ Arrays.toString(vectorResult2));
+        double[] vectorResult3 = matrixW.preMultiply(pointsArray[3]);
+        System.out.println("Wektor x[3]' "+ Arrays.toString(vectorResult3));
+        double[] vectorResult4 = matrixW.preMultiply(pointsArray[4]);
+        System.out.println("Wektor x[4]' "+ Arrays.toString(vectorResult4));
+        double[] vectorResult5 = matrixW.preMultiply(pointsArray[5]);
+        System.out.println("Wektor x[5]' "+ Arrays.toString(vectorResult5));
     }
 }
