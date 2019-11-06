@@ -4,12 +4,22 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.stat.correlation.Covariance;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class PCACalculator {
 
     public static void main(String[] args) {
 
+        DataImporter di = new DataImporter();
+        List<List<String>> data = di.readFromFile("insurance.csv",",");
+        List<Integer> active = new ArrayList<>();
+        active.add(0);
+        active.add(2);
+        active.add(6);
+        double[][] pointsArray = di.convertToDoubleArray(data,active);
+/*
         double[][] pointsArray = new double[][]{
                 new double[]{57.5, 0.525, 57, 51, -47},
                 new double[]{7.5, 0.505, 49, 47, -69},
@@ -17,6 +27,8 @@ public class PCACalculator {
                 new double[]{-77.5, 0.515, 49, 33, -71},
                 new double[]{-57.5, 0.535, 49, 29, -75},
                 new double[]{-357.5, 0.325, 25, 19, -87}};
+*/
+
 
         RealMatrix realMatrix = MatrixUtils.createRealMatrix(pointsArray);
         System.out.println("Macierz danych: "+realMatrix);
@@ -54,5 +66,7 @@ public class PCACalculator {
         System.out.println("Wektor x[4]' "+ Arrays.toString(vectorResult4));
         double[] vectorResult5 = matrixW.preMultiply(pointsArray[5]);
         System.out.println("Wektor x[5]' "+ Arrays.toString(vectorResult5));
+
+
     }
 }
