@@ -7,14 +7,14 @@ import java.util.List;
 
 class DataImporter {
 
-    List<List<String>> readFromFile(String nameOfFile, String separator){
+    List<List<String>> readFromFile(String nameOfFile){
         List<List<String>> listOfData = new ArrayList<List<String>>();
 
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(nameOfFile))) {
             String line;
 
-            while ((line = bufferedReader.readLine()) != null && line.indexOf(separator) > 0 ) {
-                listOfData.add(Arrays.asList(line.split(separator)));
+            while ((line = bufferedReader.readLine()) != null && line.indexOf(",") > 0 ) {
+                listOfData.add(Arrays.asList(line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)")));
             }
 
         } catch (IOException e) {
@@ -24,7 +24,7 @@ class DataImporter {
     }
 
     double[][] convertToDoubleArray(List<List<String>> listOfData, List<Integer> activeArgument){
-        double[][] matrix = new double[listOfData.size()][activeArgument.size()];
+        double[][] matrix = new double[listOfData.size()-1][activeArgument.size()];
 
         for(int i=1;i<listOfData.size();i++){
             List<String> partOfData = listOfData.get(i);

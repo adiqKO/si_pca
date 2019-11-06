@@ -13,11 +13,19 @@ public class PCACalculator {
     public static void main(String[] args) {
 
         DataImporter di = new DataImporter();
-        List<List<String>> data = di.readFromFile("insurance.csv",",");
+        List<List<String>> data = di.readFromFile("consolidated_coin_data.csv");
         List<Integer> active = new ArrayList<>();
+        active.add(2);
+        active.add(3);
+        active.add(4);
+        active.add(5);
+
+        /*
         active.add(0);
         active.add(2);
         active.add(6);
+        */
+
         double[][] pointsArray = di.convertToDoubleArray(data,active);
 /*
         double[][] pointsArray = new double[][]{
